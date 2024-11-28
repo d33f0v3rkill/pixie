@@ -1,12 +1,15 @@
 <?php namespace Pixie\QueryBuilder;
 
 use PDO;
+use PDOStatement;
 use Pixie\Connection;
 use Pixie\Exception;
 
 class QueryBuilderHandler
 {
-
+	protected $adapterConfig;
+	protected $adapter;
+	
     /**
      * @var \Viocon\Container
      */
@@ -55,7 +58,7 @@ class QueryBuilderHandler
      * @param int $fetchMode
      * @throws Exception
      */
-    public function __construct(Connection $connection = null, $fetchMode = PDO::FETCH_OBJ)
+    public function __construct(Connection|null $connection = null, $fetchMode = PDO::FETCH_OBJ)
     {
         if (is_null($connection)) {
             if (!$connection = Connection::getStoredConnection()) {
@@ -64,10 +67,10 @@ class QueryBuilderHandler
         }
 
         $this->connection = $connection;
-        $this->container = $this->connection->getContainer();
-        $this->pdo = $this->connection->getPdoInstance();
-        $this->adapter = $this->connection->getAdapter();
-        $this->adapterConfig = $this->connection->getAdapterConfig();
+		$this->container = $this->connection->getContainer();
+		$this->pdo = $this->connection->getPdoInstance();
+		$this->adapter = $this->connection->getAdapter();
+		$this->adapterConfig = $this->connection->getAdapterConfig();
 
         $this->setFetchMode($fetchMode);
 
