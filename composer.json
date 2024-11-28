@@ -22,6 +22,11 @@
       "name": "Pavel Puchkin",
       "email": "i@neoascetic.me",
       "role": "Developer"
+    },
+    {
+      "name": "Dave Pennarts",
+      "email": "dave@corenio.com",
+      "role": "Maintainer"
     }
   ],
   "require": {
