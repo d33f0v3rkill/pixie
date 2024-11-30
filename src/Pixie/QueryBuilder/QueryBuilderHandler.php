@@ -116,7 +116,7 @@ class QueryBuilderHandler
      * @return QueryBuilderHandler
      * @throws Exception
      */
-    public function newQuery(Connection $connection = null)
+    public function newQuery(Connection|null $connection = null)
     {
         if (is_null($connection)) {
             $connection = $this->connection;
